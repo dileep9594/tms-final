@@ -1,0 +1,24 @@
+cloud:
+  aws:
+    credentials:
+      access-key: AKIA3XRUTM5NOQ5RLXWN
+      secret-key: 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
+    region:
+      static: us-east-1
+    stack:
+      auto: false
+
+application:
+  bucket:
+    name: techstorage
+
+
+spring:
+  servlet:
+    multipart:
+      enabled: true
+      file-size-threshold: 2MB
+      max-file-size: 5MB
+      max-request-size: 10MB
+
+
