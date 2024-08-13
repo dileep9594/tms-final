@@ -2,6 +2,7 @@ import { useState } from "react";
 import { Container, Row, Col } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
 import "../css/tasks.css";
+import { registerApi } from "../service/AuthApiService";
 
 const CreateAccount = () => {
   const [username, setUsername] = useState("");
@@ -30,10 +31,14 @@ const CreateAccount = () => {
       };
 
       // Store in localStorage
-      localStorage.setItem("userData", JSON.stringify(register));
-
+      registerApi(register).then((response) => {
+        console.log("debug-1");
+        localStorage.setItem("userData", JSON.stringify(response.data));
       // Redirect to login or any other page
       navigate("/login");
+       })
+       .catch((error) => console.log(error));
+     
     }
   }
 

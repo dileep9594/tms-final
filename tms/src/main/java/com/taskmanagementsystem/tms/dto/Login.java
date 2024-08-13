@@ -11,8 +11,8 @@ import lombok.Setter;
 @NoArgsConstructor
 @AllArgsConstructor
 public class Login {
-    @NotEmpty(message = "Invalid: username cannot be empty.")
-    private String username ;
+    @NotEmpty(message = "Invalid: email cannot be empty.")
+    private String email;
     @NotEmpty(message = "Invalid: password cannot be empty")
     private String password ;
 }

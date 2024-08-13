@@ -39,7 +39,7 @@ public class AuthServiceImpl implements AuthService {
 
     @Override
     public Optional<User> login(Login login) {
-        return userRepository.findByUsernameOrEmail(login.getUsername(), login.getUsername())
+        return userRepository.findByUsernameOrEmail(login.getEmail(), login.getEmail())
                 .filter(user -> passwordEncoder.matches(login.getPassword(), user.getPassword()));
     }
 

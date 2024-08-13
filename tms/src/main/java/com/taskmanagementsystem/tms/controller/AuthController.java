@@ -35,7 +35,7 @@ public class AuthController {
         Optional<User> user = authService.login(login);
         if (user.isPresent()){
             User presentUser = user.get();
-            return ResponseEntity.ok(new AuthResponse(presentUser.getId(), presentUser.getUsername(), presentUser.getRole()));
+            return ResponseEntity.ok(new AuthResponse(presentUser.getId(), presentUser.getEmail(), presentUser.getRole()));
         }
         return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
     }

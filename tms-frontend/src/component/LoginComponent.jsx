@@ -16,26 +16,41 @@ const LoginComponent = () => {
   async function handleLoginForm(event) {
     event.preventDefault();
 
-    if (validateForm()) {
-      const storedUserData = JSON.parse(localStorage.getItem("userData"));
+    // if (validateForm()) {
+    //   const storedUserData = JSON.parse(localStorage.getItem("userData"));
 
-      if (storedUserData) {
-        const decodedPassword = atob(storedUserData.password);
+    //   if (storedUserData) {
+    //     const decodedPassword = atob(storedUserData.password);
         
-        if (storedUserData.email === email && decodedPassword === password) {
+    //     if (storedUserData.email === email && decodedPassword === password) {
+    //       const basicAuth = "Basic " + btoa(email + ":" + password);
+    //       const role = storedUserData.role || "user"; 
+          
+    //       storeBasicAuth(basicAuth);
+    //       saveLoggedUser(storedUserData.id, email, role);
+    //       loginApi(email,password).then((response) => {
+    //         navigate(`/tasks`);
+    //        })
+    //        .catch((error) => console.log(error));
+         
+    //     } else {
+    //       setErrors({ email: "", password: "Invalid email or password" });
+    //     }
+    //   } else {
+    //     setErrors({ email: "", password: "User not found" });
+    //   }
+    // }
+    if (validateForm()) {
+      await loginApi(email, password)
+        .then((response) => {
+          console.log(response.data);
           const basicAuth = "Basic " + btoa(email + ":" + password);
-          const role = storedUserData.role || "user"; 
-          
+          const role = response.data.role;
           storeBasicAuth(basicAuth);
-          saveLoggedUser(storedUserData.id, email, role);
-          
+          saveLoggedUser(response.data.id, email, role);
           navigate(`/tasks`);
-        } else {
-          setErrors({ email: "", password: "Invalid email or password" });
-        }
-      } else {
-        setErrors({ email: "", password: "User not found" });
-      }
+        })
+        .catch((error) => console.error(error));
     }
   }
 
