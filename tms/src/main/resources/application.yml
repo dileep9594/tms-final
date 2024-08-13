@@ -1,16 +1,16 @@
 cloud:
   aws:
     credentials:
-      access-key: AKIA3XRUTM5NOQ5RLXWN
-      secret-key: hZvfIKiKdoAHpu4H48l5/d+bS0NU2tOM+uxz2iKd
+      access-key: //your access key
+      secret-key: //your secret key
     region:
-      static: us-east-1
+      static: //aws-region
     stack:
       auto: false
 
 application:
   bucket:
-    name: techstorage
+    name: //bucket-name
 
 
 spring:
